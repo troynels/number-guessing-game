@@ -14,7 +14,7 @@ number between the minimum and maximum. Tells the user if their guess was too hi
 // Asks the user for input, then returns the input
 int getUserInput(int step) {
 	string input = "";
-	int myNumber = 0;
+	int num = 0;
 	while (true) {
 		if (step == 1) {
 			cout << "\nPlease enter the smallest that the random number can be: ";
@@ -37,12 +37,12 @@ int getUserInput(int step) {
 		}
 		// This code converts from string to number safely.
 		stringstream myStream(input);			// if user enters a number followed by characters, it will process the number up to the characters
-		if (myStream >> myNumber) {
+		if (myStream >> num) {
 			break;
 		}
 		cout << endl << "ERROR: Your input was invalid. Please try again." << endl;
 	}
-	return myNumber;
+	return num;
 }
 
 // Generates a random int between a and b
@@ -56,7 +56,7 @@ int randomNumber(int a, int b) {
 	return rand;
 }
 
-// A template for informing the user of the accuracy of their guess
+// A template for informing the user of the accuracy of their guess. Changes the message depending on the input
 void prgmFeedback(string a, int g) {
 	cout << "Your guess of " << g << " was " << a << "\n";
 }
