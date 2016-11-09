@@ -23,10 +23,24 @@ int getUserInput(int step) {
 			cout << "Please enter the largest that the random number can be: ";
 		}
 		else if (step == 3) {
-			cout << "Enter your guess between the minimum number and the maximum number: ";
+			cout << "\nEnter your guess between the minimum number and the maximum number: ";
 		}
 		getline(cin, input);
 		string processInput = input;
+		if (processInput[0] == '-' || isdigit(processInput[0])) {
+			int i = 0;
+			for (char c : processInput) {
+				if (isdigit(c)) {
+
+				}
+				else {
+					if (i == 0) { continue; }
+					input = "";
+				}
+				i += 1;
+			}
+		}
+		/*
 		for (char c : processInput) {
 			if (isdigit(c) || c == '-') {
 
@@ -35,6 +49,7 @@ int getUserInput(int step) {
 				input = "";
 			}
 		}
+		*/
 		// This code converts from string to number safely.
 		stringstream myStream(input);			// if user enters a number followed by characters, it will process the number up to the characters
 		if (myStream >> num) {
@@ -58,10 +73,10 @@ int randomNumber(int a, int b) {
 
 // A template for informing the user of the accuracy of their guess. Changes the message depending on the input
 void prgmFeedback(string a, int g) {
-	cout << "Your guess of " << g << " was " << a << "\n";
+	cout << endl << "Your guess of " << g << " was " << a << "\n";
 }
 
-
+// Main function, displays introduction message and initiates other functions
 int main() {
 	cout << "Hello and welcome to a number guessing game!\n";
 	cout << "In this game, you try to guess a random number, and I will tell you if you guessed too high or too low.\n";
@@ -76,12 +91,12 @@ retryInput:
 	int guess;
 	do {
 		guess = getUserInput(3);
-		if (guess < minNum || guess > maxNum) { cout << endl << "ERROR: Your guess of " << guess << " was out of bounds.\n" << endl; }
+		if (guess < minNum || guess > maxNum) { cout << endl << "ERROR: Your guess of " << guess << " was out of bounds." << endl; }
 		else if (guess > randNum) { prgmFeedback("too high.", guess); }
 		else if (guess < randNum) { prgmFeedback("too low.", guess); }
 	} while (guess != randNum);
 	prgmFeedback("correct!", guess);
-	cout << "\nYou win!\n\n";
+	cout << "\nYou win!\n" << endl;
 	cout << "Press enter to continue...\n";
 	cin.ignore();
 	cin.get();
