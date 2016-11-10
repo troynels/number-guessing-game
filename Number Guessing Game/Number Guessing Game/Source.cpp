@@ -40,18 +40,8 @@ int getUserInput(int step) {
 				i += 1;
 			}
 		}
-		/*
-		for (char c : processInput) {
-			if (isdigit(c) || c == '-') {
-
-			}
-			else {
-				input = "";
-			}
-		}
-		*/
 		// This code converts from string to number safely.
-		stringstream myStream(input);			// if user enters a number followed by characters, it will process the number up to the characters
+		stringstream myStream(input);			
 		if (myStream >> num) {
 			break;
 		}
